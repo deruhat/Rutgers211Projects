@@ -1,0 +1,213 @@
+-bash-4.1$ ./tokenizer "start0.123e+65 12354 01235646e3256 "
+Escape character: [Ox73]
+Escape character: [Ox74]
+Escape character: [Ox61]
+Escape character: [Ox72]
+Escape character: [Ox74]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "0.123e+65 12354 01235646e3256 "
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 "
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 ff 0. 1.1. 48e58"
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+Escape character: [Ox66]
+Escape character: [Ox66]
+malformed: "0."
+float "1.1"
+Escape character: [Ox2e]
+decimal "48"
+Escape character: [Ox65]
+decimal "58"
+-bash-4.1$ gcc -o tokenizer tokenizer.c
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 ff 0. 1.1. 48e58"
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+Escape character: [Ox66]
+Escape character: [Ox66]
+malformed: "0."
+float "1.1"
+Escape character: [Ox2e]
+malformed: "48e58"
+-bash-4.1$ gcc -o tokenizer tokenizer.c
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 ff 0. 1.1. 48e58"
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+Escape character: [Ox66]
+Escape character: [Ox66]
+malformed: "0."
+float "1.1"
+Escape character: [Ox2e]
+float "48e58"
+-bash-4.1$ ./tokenizer "start0.123e+65 12354 01235646e3256 "
+Escape character: [Ox73]
+Escape character: [Ox74]
+Escape character: [Ox61]
+Escape character: [Ox72]
+Escape character: [Ox74]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 "
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "0.123e+65 12354 01235646e3256 "
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+-bash-4.1$ ./tokenizer "aaaaaadf0.123e+65 12354 01235646e3256 ff 0. 1.1. 48e58"
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox61]
+Escape character: [Ox64]
+Escape character: [Ox66]
+float "0.123e+65"
+decimal "12354"
+octal "01235646"
+Escape character: [Ox65]
+decimal "3256"
+Escape character: [Ox66]
+Escape character: [Ox66]
+malformed: "0."
+float "1.1"
+Escape character: [Ox2e]
+float "48e58"
+-bash-4.1$ ./tokenizer "02546+e1236540.3256.hg "
+octal "02546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+-bash-4.1$ ./tokenizer " 34.e5602546+e1236540.3256.hg "
+malformed: "34."
+decimal "5602546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+-bash-4.1$ ./tokenizer " 34.5602546+e1236540.3256.hg "
+float "34.5602546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+-bash-4.1$ ./tokenizer "0700 34.5602546+e1236540.3256.hg "
+octal "0700"
+float "34.5602546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+-bash-4.1$ ./tokenizer "0700 34.5602546+e1236540.3256.hg123150x0x2564652++ "
+octal "0700"
+float "34.5602546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+decimal "123150"
+Escape character: [Ox78]
+hex "0x2564652"
+Escape character: [Ox2b]
+Escape character: [Ox2b]
+-bash-4.1$ ./tokenizer "000x60x0x54123658 0700 34.5602546+e1236540.3256.hg123150x0x2564652++ "
+octal "000"
+Escape character: [Ox78]
+decimal "60"
+Escape character: [Ox78]
+hex "0x54123658"
+octal "0700"
+float "34.5602546"
+Escape character: [Ox2b]
+Escape character: [Ox65]
+float "1236540.3256"
+Escape character: [Ox2e]
+Escape character: [Ox68]
+Escape character: [Ox67]
+decimal "123150"
+Escape character: [Ox78]
+hex "0x2564652"
+Escape character: [Ox2b]
+Escape character: [Ox2b]
